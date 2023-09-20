@@ -9,36 +9,34 @@
  */
 char *_strdup(const char *str)
 {
-        char *ptr;
-        int i;
-        int length = 0;
-        const char *original = str;
+	char *ptr;
+	int i;
+	int length = 0;
+	const char *original = str;
 
-        if (str == NULL)
-                return (NULL);
+	if (str == NULL)
+		return (NULL);
+/* Calculate the length of the input string*/
+	while (*str != '\0')
+	{
+		length++;
+		str++;
+	}
 
-        /* Calculate the length of the input string*/
-        while (*str != '\0')
-        {
-                length++;
-                str++;
-        }
+/* Reset str to the original position*/
+	str = original;
 
-        /* Reset str to the original position*/
-        str = original;
+/* Allocate memory for the duplicated string*/
+	ptr = malloc(sizeof(char) * (length + 1));
 
-        /* Allocate memory for the duplicated string*/
-        ptr = malloc(sizeof(char) * (length + 1));
+	if (ptr == NULL)
+		return (NULL);
 
-        if (ptr == NULL)
-        return (NULL);
+/* Copy the characters from the original string to the new one*/
+	for (i = 0; i < length; i++)
+		ptr[i] = str[i];
 
-        /* Copy the characters from the original string to the new one*/
-        for (i = 0; i < length; i++)
-                ptr[i] = str[i];
-
-        /* Null-terminate the duplicated string*/
-        ptr[length] = '\0';
-
-        return (ptr);
+/* Null-terminate the duplicated string*/
+	ptr[length] = '\0';
+	return (ptr);
 }
